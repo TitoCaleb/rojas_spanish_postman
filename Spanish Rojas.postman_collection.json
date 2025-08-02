@@ -1,0 +1,1292 @@
+{
+	"info": {
+		"_postman_id": "e78011e7-7e8e-48ae-9cc9-6f2aa360cfd0",
+		"name": "Spanish Rojas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25994564"
+	},
+	"item": [
+		{
+			"name": "Security",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const payload =  { email: \"caleb@rojas.com\", password: \"123456\" }; // {email: \"master@gmail.com\", password: \"123456\" }\r",
+									"const payloadString = JSON.stringify(payload);\r",
+									"const secretKey = \"123456\";\r",
+									"\r",
+									"// Generar la firma usando HMAC-SHA256\r",
+									"const signature = CryptoJS.HmacSHA256(payloadString, secretKey).toString(CryptoJS.enc.Hex);\r",
+									"\r",
+									"// Mostrar los resultados en consola\r",
+									"console.log(\"Payload:\", payloadString);\r",
+									"console.log(\"Signature:\", signature);\r",
+									"\r",
+									"// Guardar las variables en el entorno\r",
+									"pm.environment.set(\"PAYLOAD\", payloadString);\r",
+									"pm.environment.set(\"SIGNATURE\", signature);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"owner@gmail.com\",\n    \"password\": \"},$=UtZozv[?6!B#?G{F\"//\"OswDj_$82Ct6LAso%pd)\" //\"DAsD3.w+1>JovKTYE~^4\"\n}\n\n// Tutores\n// {\n//     \"email\": \"tutor1@rojasspanish.com\",\n//     \"password\": \")Z;oMW%y}6Foz9GD5GIb\"\n// }\n\n// {\n//     \"email\": \"tutor2@rojasspanish.com\",\n//     \"password\": \"4N6=9/`q:8SdcgIdtv`]\"\n// }\n\n// Admins\n// {\n//     \"email\": \"admin1@rojasspanish.com\",\n//     \"password\": \";vw31gCRWzq`%Gx|+PBt\"\n// }\n\n// {\n//     \"email\": \"admin2@rojasspanish.com\",\n//     \"password\": \"n%*~!\\\"F<5VEPb2xf*OVE\"\n// }\n\n//Students\n// {\n//     \"email\": \"caleb5@yopmail.com\",\n//     \"password\": \"L&gendary2605\"\n// }\n\n// {\n//     \"email\": \"student2@gmail.com\",\n//     \"password\": \"eXC4Ls+TF0`R0:DU\\\"21$\"\n// }\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/security/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"security",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Caleb\",\n    \"cellPhone\": \"940485955\",\n    \"email\": \"caleb5@yopmail.com\",\n    \"password\": \"L&gendary2605\",\n    \"areaCode\": \"+51\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/security/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"security",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/security/logout",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"security",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"RC0BAN\",\r\n    \"user\": \"687c26e76f3d172ea54661ae\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/security/validate-otp",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"security",
+								"validate-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/security/validate-session",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"security",
+								"validate-session"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Tutor",
+					"item": [
+						{
+							"name": "Find Tutor",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/user/tutor",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"tutor"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n    \"name\": \"tutor1\",\r\n    \"lastName\": \"lastName\",\r\n    \"email\": \"tutor2@rojasspanish.com\",\r\n    \"cellPhone\": \"+1123941045546\",\r\n    \"address\": {\r\n        \"street\": \"Jr. mariscal sucre\",\r\n        \"city\": \"lima\",\r\n        \"state\": \"lima\",\r\n        \"zipCode\": \"15086\",\r\n        \"country\": \"PERU\"\r\n    }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/tutor",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"tutor"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Tutor",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{   \r\n    \"name\": \"tutor1\",\r\n    \"lastName\": \"tutor lastName\",\r\n    \"email\": \"tutor@rojasspanish.com\",\r\n    \"cellPhone\": \"+1 941045546\",\r\n    \"address\": {\r\n        \"street\": \"Jr. mariscal sucre\",\r\n        \"city\": \"lima\",\r\n        \"state\": \"lima\",\r\n        \"zipCode\": \"15086\",\r\n        \"country\": \"PERU\"\r\n    }\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/user/tutor",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"user",
+												"tutor"
+											]
+										}
+									},
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"tutor 2 pa 2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/tutor/67f733d81cb543691f5c39b7",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"tutor",
+										"67f733d81cb543691f5c39b7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Find",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/user/admin",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"admin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n    \"rol\": \"FINANCE\",\r\n    \"name\": \"admin1\",\r\n    \"lastName\": \"admin lastName\",\r\n    \"email\": \"admin2@rojasspanish.com\",\r\n    \"cellPhone\": \"+1 941045546\",\r\n    \"address\": {\r\n        \"street\": \"Jr. mariscal sucre\",\r\n        \"city\": \"lima\",\r\n        \"state\": \"lima\",\r\n        \"zipCode\": \"15086\",\r\n        \"country\": \"united states\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/admin",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"admin"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Admin",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{   \r\n    \"rol\": \"FINANCE\",\r\n    \"name\": \"admin1\",\r\n    \"lastName\": \"admin lastName\",\r\n    \"email\": \"admin@rojasspanish.com\",\r\n    \"cellPhone\": \"+1 941045546\",\r\n    \"address\": {\r\n        \"street\": \"Jr. mariscal sucre\",\r\n        \"city\": \"lima\",\r\n        \"state\": \"lima\",\r\n        \"zipCode\": \"15086\",\r\n        \"country\": \"MEXICO\"\r\n    }\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BASE_URL}}/user/admin",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"user",
+												"admin"
+											]
+										}
+									},
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n    \"lastName\": \"apellido 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/admin/67f7354d1cb543691f5c39d6",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"admin",
+										"67f7354d1cb543691f5c39d6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Student",
+					"item": [
+						{
+							"name": "Find",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/user/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Prueba\",\r\n    \"lastName\": \"lastName\",\r\n    \"cellPhone\": \"94041890\",\r\n    \"email\": \"student2@gmail.com\",\r\n    \"address\":{\r\n      \"street\": \"hola\",\r\n      \"streetLine2\": \"hola2\",\r\n      \"city\": \"lima\",\r\n      \"state\":\"lima\",\r\n      \"zipCode\": \"123456\",\r\n      \"country\": \"hola\"\r\n    },\r\n    \"areaCode\": \"+51\"\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"lastName\": \"juarez\",\r\n    \"ageRange\": \"SENIOR\",\r\n    \"address\": {\r\n        \"street\": \"jr sucre\",\r\n        \"streetLine2\": \"\",\r\n        \"city\": \"lima\",\r\n        \"state\": \"lima\",\r\n        \"country\": \"lima\",\r\n        \"zipCode\": \"15086\"\r\n    },\r\n    \"referralSource\": \"FRIENDORFAMILY\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/687c26e76f3d172ea54661ae",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"687c26e76f3d172ea54661ae"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Find By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/user/67f731121cb543691f5c39a3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"67f731121cb543691f5c39a3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"$*zKqW%lHKV%\\\"gt}%l[-\",\r\n    \"newPassword\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/update-password/67f73f91f60d9d4eee785911",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"update-password",
+								"67f73f91f60d9d4eee785911"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "Get Logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/security/logs?limit=10&page=3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"security",
+								"logs"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/payments",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"currency\": \"USD\",\r\n    \"program\": \"6828ec9f78689d7195817950\",\r\n    \"user\": \"6828ecc578689d7195817955\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/payments/create",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"payments",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Process Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"confirmationCode\": \"12345678910\",\r\n    \"paymentMethod\": \"67f7606917e4bb1cff5f5264\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/payments/process-payment/67fb47a15085742183d1666b",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"payments",
+								"process-payment",
+								"67fb47a15085742183d1666b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Intent -Stripe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"payment\": \"67fc88cef0a0adbcde2e97c4\",\r\n    \"user\": \"67f73f91f60d9d4eee785911\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/payments/create-intent",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"payments",
+								"create-intent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Programs",
+			"item": [
+				{
+					"name": "schedules",
+					"item": [
+						{
+							"name": "Create Schedule",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"schedules\": [\r\n        {\r\n            \"level\": \"A1\",\r\n            \"modality\": \"VIRTUAL\",\r\n            \"daySchedules\": [\r\n                {\r\n                    \"day\": \"MONDAY\",\r\n                    \"timeSlots\": [\r\n                        {\r\n                            \"startTime\": \"9:00\",\r\n                            \"endTime\": \"11:00\"\r\n                        },\r\n                        {\r\n                            \"startTime\": \"12:00\",\r\n                            \"endTime\": \"14:00\"\r\n                        },\r\n                        {\r\n                            \"startTime\": \"18:00\",\r\n                            \"endTime\": \"20:00\"\r\n                        },\r\n                        {\r\n                            \"startTime\": \"19:30\",\r\n                            \"endTime\": \"21:30\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"day\": \"FRIDAY\",\r\n                    \"timeSlots\": [\r\n                        {\r\n                            \"startTime\": \"9:00\",\r\n                            \"endTime\": \"11:00\"\r\n                        },\r\n                        {\r\n                            \"startTime\": \"12:00\",\r\n                            \"endTime\": \"14:00\"\r\n                        },\r\n                        {\r\n                            \"startTime\": \"18:00\",\r\n                            \"endTime\": \"20:00\"\r\n                        },\r\n                        {\r\n                            \"startTime\": \"19:30\",\r\n                            \"endTime\": \"21:30\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/programs/6828ec9f78689d7195817950/schedules",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"programs",
+										"6828ec9f78689d7195817950",
+										"schedules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find Schedules",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/programs/6828ec9f78689d7195817950/schedules",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"programs",
+										"6828ec9f78689d7195817950",
+										"schedules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete schedules",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/programs/6828ec9f78689d7195817950/schedules/683ce4158752c16860478a8d",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"programs",
+										"6828ec9f78689d7195817950",
+										"schedules",
+										"683ce4158752c16860478a8d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/programs/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"programs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/programs/6828ec9f78689d7195817950",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"programs",
+								"6828ec9f78689d7195817950"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Programa de Grupos\",\r\n    \"description\": \"Este programa es de grupos\",\r\n    \"isForOnBoarding\": true,\r\n    \"type\": \"GROUP\",\r\n    \"price\": 429,\r\n    \"modality\": [\r\n        \"VIRTUAL\",\r\n        \"IN_PERSON\"\r\n    ],\r\n    \"availableLevels\": [\r\n        \"A1\",\r\n        \"A2\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/programs/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"programs",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Group Program",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Programa de Grupos\",\r\n    \"description\": \"Este programa es de grupos\",\r\n    \"isForOnBoarding\": true,\r\n    \"type\": \"GROUP\",\r\n    \"price\": 429,\r\n    \"modality\": [\r\n        \"VIRTUAL\",\r\n        \"IN_PERSON\"\r\n    ],\r\n    \"availableLevels\": [\r\n        \"A1\",\r\n        \"A2\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/programs/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"programs",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Create Tutoring Program",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Advanced English Tutoring\",\r\n  \"description\": \"Personalized tutoring sessions for advanced learners.\",\r\n  \"type\": \"TUTORING\",\r\n  \"modality\": [\"VIRTUAL\", \"IN_PERSON\"],\r\n  \"availableLevels\": [\"A1\", \"A2\"],\r\n  \"isForOnBoarding\": true,\r\n  \"hoursPackage\": [20, 30, 40, 50],\r\n  \"pricePerPackageHour\": {\r\n    \"20\": 1300,\r\n    \"30\": 1800,\r\n    \"40\": 2200,\r\n    \"50\": 2500\r\n  },\r\n  \"groupClassAllowedPerPackage\": {\r\n    \"20\": 0,\r\n    \"30\": 5,\r\n    \"40\": 10,\r\n    \"50\": \"unlimited\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/programs/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"programs",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/programs/67df99d88e1bceb728c6093e",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"programs",
+								"67df99d88e1bceb728c6093e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/programs/67df99d88e1bceb728c6093e",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"programs",
+								"67df99d88e1bceb728c6093e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Commons",
+			"item": [
+				{
+					"name": "Payment Methods",
+					"item": [
+						{
+							"name": "Find",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/common/payment-methods?status=DELETED",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"payment-methods"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "DELETED"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Cash\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/common/payment-methods",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"payment-methods"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"paypal\",\r\n    \"status\": \"INACTIVE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/common/payment-methods/67f7606917e4bb1cff5f5264",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"payment-methods",
+										"67f7606917e4bb1cff5f5264"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/common/payment-methods/67f7606917e4bb1cff5f5264",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"payment-methods",
+										"67f7606917e4bb1cff5f5264"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Zoom Links",
+					"item": [
+						{
+							"name": "Find",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/common/zoom-links?status=DELETED",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"zoom-links"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "DELETED"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"link\": \"https://us02web.zoom.us/j/87217315805\",\r\n    \"level\": \"A1\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/common/zoom-links",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"zoom-links"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Starter\",\r\n    \"level\": \"STARTER\",\r\n    \"status\": \"ACTIVE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/common/zoom-links/67f75af517e4bb1cff5f524b",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"zoom-links",
+										"67f75af517e4bb1cff5f524b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/common/zoom-links/67f75af517e4bb1cff5f524b",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"zoom-links",
+										"67f75af517e4bb1cff5f524b"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Locations",
+					"item": [
+						{
+							"name": "Find",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/common/locations",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"locations"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "DELETED",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"cdmx\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/common/locations",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"locations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Starter\",\r\n    \"level\": \"STARTER\",\r\n    \"status\": \"ACTIVE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/common/locations/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"locations",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/common/locations/67f75af517e4bb1cff5f524b",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"common",
+										"locations",
+										"67f75af517e4bb1cff5f524b"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Academic",
+			"item": [
+				{
+					"name": "Sessions",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"program\": \"6828ec9f78689d7195817950\",\r\n    \"startDate\": \"2025-06-16\",\r\n    \"endDate\": \"2025-08-08\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/sessions/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"sessions",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Slots",
+			"item": [
+				{
+					"name": "Find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/slots/?session=6844b386abb54848b2a953b7",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"slots",
+								""
+							],
+							"query": [
+								{
+									"key": "session",
+									"value": "6844b386abb54848b2a953b7"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
